@@ -100,6 +100,7 @@ public class Health : MonoBehaviour
         }
     }
 
+
     void SetLayerRecursively(GameObject obj, int newLayer)
     {
         obj.layer = newLayer;

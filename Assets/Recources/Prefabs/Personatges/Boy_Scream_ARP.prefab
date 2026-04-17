@@ -1343,10 +1343,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementType: 1
-  waitTime: 0.5
+  waitTime: 0.1
   waypoints: []
   randomRadius: 30
   maxAttempts: 10
+  areaMask: -1
 --- !u!114 &8245764159022683574
 MonoBehaviour:
   m_ObjectHideFlags: 0

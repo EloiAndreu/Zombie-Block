@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunID: 0
   shootMaxDist: 500
-  damage: 100
+  damage: 50
   fireRate: 0.7
   maxBales: 7
   currentBales: 10

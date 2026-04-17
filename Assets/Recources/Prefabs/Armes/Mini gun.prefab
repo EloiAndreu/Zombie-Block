@@ -209,6 +209,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 63
   canAim: 0
+  automaticFire: 1
   shootPoint: {fileID: 925439299195367710}
   balaPrefab: {fileID: 7610698225302626413, guid: 3bdc502882302d04aa29919ac53be05a, type: 3}
   muzzleFlash: {fileID: 6197195412940306834}

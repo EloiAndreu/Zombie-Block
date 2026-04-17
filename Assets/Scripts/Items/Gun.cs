@@ -19,6 +19,8 @@ public class Gun : MonoBehaviour
     Coroutine reloadCoroutine = null;
     [SerializeField] LayerMask shootMask;
     public bool canAim = true;
+    public bool automaticFire = false;
+    bool apuntPerDisparar = false;
 
     public GameObject shootPoint;
 
@@ -56,6 +58,12 @@ public class Gun : MonoBehaviour
                if(!diferentAnimations) anim.SetFloat("State", 0f); //Animació recarregar
             }
         }
+
+        if(!automaticFire && Input.GetMouseButtonDown(0) && apuntPerDisparar)
+        {
+            apuntPerDisparar = false;
+            canShoot = true;
+        }
     }
 
     //Mètode públic per permetre disparar desde altres scripts
@@ -72,7 +80,8 @@ public class Gun : MonoBehaviour
 
         //Esperem 'fireRate' segons abans de tornar a disparar
         yield return new WaitForSeconds(fireRate);
-        canShoot = true;
+        apuntPerDisparar = true;
+        if(automaticFire) canShoot = true;
     }
 
     //DISPARAR

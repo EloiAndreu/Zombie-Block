@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     public float damage = 10;
     public float impactForce = 50f;
 
-    public GameObject particlesBlood, particleMuzzleFlash;
+    public GameObject particlesBlood, particleMuzzleFlash, particlesSparks;
 
     Rigidbody rb;
 
@@ -56,12 +56,22 @@ public class Bullet : MonoBehaviour
             {
                 Instantiate(particleMuzzleFlash, hitPoint, Quaternion.LookRotation(hitNormal));
             }
+
+            if (particlesSparks != null)
+            {
+                Instantiate(particlesSparks, hitPoint, Quaternion.LookRotation(hitNormal));
+            }
         }
         else
         {
             if (particleMuzzleFlash != null)
             {
                 Instantiate(particleMuzzleFlash, hitPoint, Quaternion.LookRotation(hitNormal));
+            }
+
+            if (particlesSparks != null)
+            {
+                Instantiate(particlesSparks, hitPoint, Quaternion.LookRotation(hitNormal));
             }
         }
 

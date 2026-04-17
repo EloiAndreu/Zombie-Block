@@ -239,6 +239,7 @@ MonoBehaviour:
   impactForce: 50
   particlesBlood: {fileID: 4483927774697469565, guid: 1008c5072ec6fef4cbf9853e6044ea05, type: 3}
   particleMuzzleFlash: {fileID: 8735768708730392910, guid: a97dd194cdb4b17498f58e917ac0ad0e, type: 3}
+  particlesSparks: {fileID: 4483927774697469565, guid: 50070e12f1a317e4488b978fd94e32f7, type: 3}
 --- !u!54 &1677728843158841486
 Rigidbody:
   m_ObjectHideFlags: 0
