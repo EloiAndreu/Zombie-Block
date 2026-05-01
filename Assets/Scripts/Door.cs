@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public bool open = false;
+    public bool defaultSatateOpen = false;
     Animator anim;
 
     void Start()
@@ -14,7 +15,11 @@ public class Door : MonoBehaviour
 
     public void ChangeDoorState()
     {
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        if(stateInfo.normalizedTime < 1f)  return;
+
         open = !open;
+        
 
         if (open)
         {

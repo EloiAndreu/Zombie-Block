@@ -30,6 +30,9 @@ public class Pickup : MonoBehaviour
     GameObject objAMoure;
 
     public LayerMask pickupLayer;
+    public GameObject potInteractuarImg;
+    public GameObject gosFollowPlayer;
+    public bool playerTeOs = false;
 
     void Start()
     {
@@ -55,7 +58,27 @@ public class Pickup : MonoBehaviour
     void Update()
     {
         MyInput();
+        CheckInteractua();
     }
+
+    void CheckInteractua()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, pickupMaxDist, pickupLayer))
+        {
+            if (hit.collider.CompareTag("Interactuable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Recollible") || 
+                ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Family Member")) && hit.collider.transform.GetComponent<Interactuable>() != null))
+            {
+                potInteractuarImg.SetActive(true);
+                return;
+            }
+        }
+
+        potInteractuarImg.SetActive(false);
+    }
+
 
     void MyInput(){ //Inputs
         if(Input.GetKeyDown (pickupKey) && !arrossegaObject){
@@ -97,11 +120,22 @@ public class Pickup : MonoBehaviour
                 obj.transform.localPosition = new Vector3(0f, 0f, 0f);
                 obj.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
 
+                MostrarUIObjecte(obj, true);
+
                 if(obj.GetComponent<Animator>() != null) obj.GetComponent<Animator>().enabled = true;
 
-                if(obj.transform.tag == "Os Gos") obj.GetComponent<Interactuable>().Interactua(1);
+                if(obj.transform.tag == "Os Gos")
+                {
+                    playerTeOs = true;
+                    GameObject gosActual = GameObject.FindGameObjectWithTag("Gos").gameObject;
+                    if(gosActual != null){
+                        Instantiate(gosFollowPlayer, gosActual.transform.position, gosActual.transform.rotation);
+                        Destroy(gosActual);
+                    }
+                    //obj.GetComponent<Interactuable>().Interactua(1);
+                } 
             }
-            else if (hit.collider.CompareTag("Interactuable"))
+            else if (hit.collider.CompareTag("Interactuable") || ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Family Member")) && hit.collider.transform.GetComponent<Interactuable>() != null))
             {
                 hit.collider.transform.GetComponent<Interactuable>().Interactua(0);
             }
@@ -123,6 +157,16 @@ public class Pickup : MonoBehaviour
         }
     }
 
+    void MostrarUIObjecte(GameObject obj, bool enabled)
+    {
+        ItemUI itemUI = obj.GetComponent<ItemUI>();
+        if(itemUI != null) itemUI.itemPickedUp = enabled;
+        if(itemUI != null)
+        {
+            itemUI.ShowAmunitionText(enabled);
+        }
+    }
+
     public void DropObject(){
         obj.transform.parent = null;
         Rigidbody rb = obj.GetComponent<Rigidbody>();
@@ -130,7 +174,36 @@ public class Pickup : MonoBehaviour
         rb.useGravity = true;
         obj.GetComponent<BoxCollider>().enabled = true;
 
+        MostrarUIObjecte(obj, false);
+
         if(obj.GetComponent<Animator>() != null) obj.GetComponent<Animator>().enabled = false;
+
+        if(obj.transform.tag == "Os Gos")
+        {
+            playerTeOs = false;
+            GameObject gos = GameObject.FindGameObjectWithTag("Gos");
+            if(gos != null) gos.GetComponent<GosMovement>().TornarAGosNormal();
+        } 
+
+        hasObject = false;
+        obj = null;       
+    }
+
+    public void DropOs(){
+        obj.transform.parent = null;
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        obj.GetComponent<BoxCollider>().enabled = true;
+
+        MostrarUIObjecte(obj, false);
+
+        if(obj.GetComponent<Animator>() != null) obj.GetComponent<Animator>().enabled = false;
+
+        if(obj.transform.tag == "Os Gos")
+        {
+            playerTeOs = false;
+        } 
 
         hasObject = false;
         obj = null;       

@@ -13,6 +13,15 @@ TagManager:
   - Os Gos
   - Gos
   - Porta Exterior
+  - Boy
+  - Ammo
+  - Magnet
+  - Boost Speed
+  - Boost Ammo
+  - Coin
+  - GameManager
+  - Granny
+  - Mommy
   layers:
   - Default
   - TransparentFX
@@ -31,7 +40,7 @@ TagManager:
   - Jardi
   - Recollible
   - NoCollisionable
-  - 
+  - Enemy
   - 
   - 
   - 

@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   open: 0
+  defaultSatateOpen: 0
 --- !u!95 &7581273034717786231
 Animator:
   serializedVersion: 5
@@ -418,6 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   open: 0
+  defaultSatateOpen: 0
 --- !u!95 &6776248415685514477
 Animator:
   serializedVersion: 5

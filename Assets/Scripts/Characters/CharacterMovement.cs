@@ -28,8 +28,9 @@ public class characterMoviment : MonoBehaviour
     private float waitCounter;
     private bool waiting = false;
 
-    private bool overrideMovement = false;
     //private bool hasStartedMoving = false;
+
+    Coroutine checkRoutine;
 
     void Start()
     {
@@ -48,8 +49,6 @@ public class characterMoviment : MonoBehaviour
     void Update()
     {
         if (!agent.enabled) return;
-
-        if (overrideMovement) return;
 
         if (agent.velocity.sqrMagnitude > 0.01f)
         {
@@ -123,30 +122,18 @@ public class characterMoviment : MonoBehaviour
     {
         for (int i = 0; i < maxAttempts; i++)
         {
-            Vector3 randomDirection = Random.insideUnitSphere * radius + origin;
+            Vector2 random2D = Random.insideUnitCircle * radius;
+            Vector3 randomPoint = origin + new Vector3(random2D.x, 0f, random2D.y);
 
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomDirection, out hit, 2.0f, areaMask))
+            if (NavMesh.SamplePosition(randomPoint, out hit, 2.0f, areaMask))
             {
-                NavMeshPath path = new NavMeshPath();
-
-                if (agent.CalculatePath(hit.position, path) 
-                    && path.status == NavMeshPathStatus.PathComplete)
-                {
-                    result = hit.position;
-                    return true;
-                }
+                result = hit.position;
+                return true;
             }
         }
 
-        // fallback segur
-        NavMeshHit fallbackHit;
-        if (NavMesh.SamplePosition(origin, out fallbackHit, radius, areaMask))
-        {
-            result = fallbackHit.position;
-            return true;
-        }
-
+        // fallback
         result = origin;
         return false;
     }
@@ -154,30 +141,5 @@ public class characterMoviment : MonoBehaviour
     public void SetTarget(Vector3 target)
     {
         agent.SetDestination(target);
-    }
-
-    public void OverrideMoveTo(Vector3 target)
-    {
-        overrideMovement = true;
-        waiting = false;
-        agent.isStopped = false;
-        agent.SetDestination(target);
-    }
-
-    public void StopOverride()
-    {
-        overrideMovement = false;
-        waiting = false;
-        agent.isStopped = false;
-
-        // Tornar al comportament normal
-        if (movementType == MovementType.Waypoints)
-        {
-            GoToNextWaypoint();
-        }
-        else if (movementType == MovementType.RandomNavMesh)
-        {
-            SetRandomDestination();
-        }
     }
 }

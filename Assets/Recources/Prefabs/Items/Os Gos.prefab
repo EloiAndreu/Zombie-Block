@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6212329738640493263
+--- !u!1001 &7459333126955305083
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 63.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -7.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66,29 +66,29 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 842631967115706893}
+      addedObject: {fileID: 245596329839933312}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8008929892073124050}
+      addedObject: {fileID: 6012178398976707623}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5060861002148342500}
+      addedObject: {fileID: 2495940812162170002}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2773394043545250521}
+      addedObject: {fileID: 9111017766314857535}
   m_SourcePrefab: {fileID: 100100000, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
---- !u!1 &6554928966083164062 stripped
+--- !u!1 &7729784604566271274 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 11ab129fb91936c4896eb2a983e4000e, type: 3}
-  m_PrefabInstance: {fileID: 6212329738640493263}
+  m_PrefabInstance: {fileID: 7459333126955305083}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &842631967115706893
+--- !u!65 &245596329839933312
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6554928966083164062}
+  m_GameObject: {fileID: 7729784604566271274}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -103,13 +103,13 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8399997, y: 0.56, z: 1.76}
   m_Center: {x: -0.00000008940697, y: 0, z: 0.000000059604645}
---- !u!54 &8008929892073124050
+--- !u!54 &6012178398976707623
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6554928966083164062}
+  m_GameObject: {fileID: 7729784604566271274}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -130,13 +130,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5060861002148342500
+--- !u!114 &2495940812162170002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6554928966083164062}
+  m_GameObject: {fileID: 7729784604566271274}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6da816904a94f9b4fb7a94182d20bf45, type: 3}
@@ -147,7 +147,7 @@ MonoBehaviour:
   interactuarEvent:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2773394043545250521}
+      - m_Target: {fileID: 9111017766314857535}
         m_TargetAssemblyTypeName: OsGos, Assembly-CSharp
         m_MethodName: LlencarOs
         m_Mode: 1
@@ -159,19 +159,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2773394043545250521
+--- !u!114 &9111017766314857535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6554928966083164062}
+  m_GameObject: {fileID: 7729784604566271274}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d20de565b6cf81647bbf6680ff63886e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 10
+  throwForce: 30
   capesValides:
     serializedVersion: 2
     m_Bits: 24704

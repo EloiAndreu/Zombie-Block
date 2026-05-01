@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
     public bool canAim = true;
     public bool automaticFire = false;
     bool apuntPerDisparar = false;
+    ItemUI itemUi;
 
     public GameObject shootPoint;
 
@@ -37,6 +38,7 @@ public class Gun : MonoBehaviour
     void Start(){
         currentBales = maxBales;
         anim = GetComponent<Animator>();
+        itemUi = GetComponent<ItemUI>();
     }
 
     void Update(){
@@ -47,10 +49,22 @@ public class Gun : MonoBehaviour
                 reloadCoroutine = null;
             }
             //GetComponent<BoxCollider>().enabled = false;
-            if(canAim && !diferentAnimations) anim.SetFloat("State", 1f); //Animació apuntar
+            
+            if(canAim && !diferentAnimations){
+                if(itemUi != null){
+                    itemUi.ShowAmunitionText(false);
+                    itemUi.ShowAmunitionText_Aim(true);
+                }
+                anim.SetFloat("State", 1f); //Animació apuntar
+            }
         }
         else{
             //GetComponent<BoxCollider>().enabled = true;
+            if(itemUi != null){
+                itemUi.ShowAmunitionText(true);
+                itemUi.ShowAmunitionText_Aim(false);
+            }
+
             if(reloadCoroutine == null){
                if(!diferentAnimations) anim.SetFloat("State", 0.5f); //Animació idle
             }

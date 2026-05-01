@@ -125,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bbd1c0c298e7912468709793bd835adc, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Gos
       objectReference: {fileID: 0}
     - target: {fileID: 1540255758573454295, guid: bbd1c0c298e7912468709793bd835adc, type: 3}
       propertyPath: m_Layer
@@ -260,7 +260,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4066189466757295039}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: 1479372276
   m_Radius: 1
   m_Speed: 8
   m_Acceleration: 10
@@ -270,9 +270,9 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2.5
+  m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 16
+  m_WalkableMask: 8
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3638241214909254314
 MonoBehaviour:
@@ -316,8 +316,10 @@ MonoBehaviour:
   minDamage: 20
   maxDamage: 50
   distAvoidObject: 30
+  tempsAgresiu: 10
   aimConstraint: {fileID: 0}
   anim: {fileID: 0}
   atacking: 0
   particlesBlood: {fileID: 4483927774697469565, guid: 1008c5072ec6fef4cbf9853e6044ea05, type: 3}
   particleSpawnPoint: {fileID: 4032755409385796882}
+  gosNormal: {fileID: 4066189466757295039, guid: 81a51ffb44d7ed947b92129a8e278fe1, type: 3}

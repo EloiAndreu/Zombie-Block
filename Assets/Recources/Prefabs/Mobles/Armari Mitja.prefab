@@ -1,5 +1,98 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &404440810342910098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4142120666686441678}
+  m_Layer: 0
+  m_Name: SpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4142120666686441678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404440810342910098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.9, y: 0.47, z: 2.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 229290479847700493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &777152851956473372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6079795791075829006}
+  m_Layer: 0
+  m_Name: SpawnPosition (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6079795791075829006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777152851956473372}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.9, y: 0.46999997, z: 2.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9191553109172814915}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &1488088192616158800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5008591137672197874}
+  m_Layer: 0
+  m_Name: SpawnPosition (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5008591137672197874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488088192616158800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.9, y: 0.47, z: 2.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6523359773811410393}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &5787063651456973336
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +108,7 @@ GameObject:
   - component: {fileID: 8591003900352595495}
   - component: {fileID: 6552445879551599357}
   - component: {fileID: 1775636195327265979}
+  - component: {fileID: 6892845802353255727}
   m_Layer: 0
   m_Name: Cube.093 (2)
   m_TagString: Interactuable
@@ -34,7 +128,8 @@ Transform:
   m_LocalPosition: {x: 2.7151995, y: 0.90000004, z: -4.799999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6079795791075829006}
   m_Father: {fileID: 663457984411163831}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4052803305532171271
@@ -173,6 +268,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6892845802353255727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787063651456973336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0ac36ea653e9945865a0762ec8495f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 0}
+  spawnPosition: {fileID: 777152851956473372}
+  spawnForce: 5
+--- !u!1 &7284474480301925032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1775217946802111501}
+  m_Layer: 0
+  m_Name: SpawnPosition (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1775217946802111501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284474480301925032}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.9, y: 0.49, z: 2.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7344712238279432945}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &7870905541537855347
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +329,7 @@ GameObject:
   - component: {fileID: 3030246785975615474}
   - component: {fileID: 8947544157917574745}
   - component: {fileID: 3336055255752491328}
+  - component: {fileID: 2629141725287083478}
   m_Layer: 0
   m_Name: Cube.093 (3)
   m_TagString: Interactuable
@@ -207,7 +349,8 @@ Transform:
   m_LocalPosition: {x: 2.7151995, y: 1.9000001, z: -4.799999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5008591137672197874}
   m_Father: {fileID: 663457984411163831}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6450208769925182751
@@ -346,6 +489,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2629141725287083478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870905541537855347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0ac36ea653e9945865a0762ec8495f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 0}
+  spawnPosition: {fileID: 1488088192616158800}
+  spawnForce: 5
 --- !u!1 &8713084405412459678
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +519,7 @@ GameObject:
   - component: {fileID: 2389365565044308417}
   - component: {fileID: 6101104625637843763}
   - component: {fileID: 1744060594714103080}
+  - component: {fileID: 3575347136718542868}
   m_Layer: 0
   m_Name: Cube.093 (1)
   m_TagString: Interactuable
@@ -380,7 +539,8 @@ Transform:
   m_LocalPosition: {x: 2.7151995, y: 1.9000001, z: -9.799999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1775217946802111501}
   m_Father: {fileID: 663457984411163831}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4906642795502815160
@@ -519,6 +679,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3575347136718542868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713084405412459678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0ac36ea653e9945865a0762ec8495f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 0}
+  spawnPosition: {fileID: 7284474480301925032}
+  spawnForce: 5
 --- !u!1001 &1062756023280089948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -630,6 +805,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: d3f46ed06259f8646901e1211b27b27b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6523359773811410393}
+    - targetCorrespondingSourceObject: {fileID: -8245756103754300591, guid: d3f46ed06259f8646901e1211b27b27b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4142120666686441678}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d3f46ed06259f8646901e1211b27b27b, type: 3}
       insertIndex: -1
@@ -649,6 +827,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6459697444325630510, guid: d3f46ed06259f8646901e1211b27b27b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4882890990304897728}
+    - targetCorrespondingSourceObject: {fileID: 6459697444325630510, guid: d3f46ed06259f8646901e1211b27b27b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8618088601201297553}
   m_SourcePrefab: {fileID: 100100000, guid: d3f46ed06259f8646901e1211b27b27b, type: 3}
 --- !u!1 &179795616380552717 stripped
 GameObject:
@@ -692,6 +873,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.7159534, y: 2.41186, z: 10.014185}
   m_Center: {x: 1.3792803, y: 1.9005811, z: -5.006673}
+--- !u!4 &229290479847700493 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8245756103754300591, guid: d3f46ed06259f8646901e1211b27b27b, type: 3}
+  m_PrefabInstance: {fileID: 1062756023280089948}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &663457984411163831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d3f46ed06259f8646901e1211b27b27b, type: 3}
@@ -787,3 +973,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8618088601201297553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276573539810351474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0ac36ea653e9945865a0762ec8495f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 0}
+  spawnPosition: {fileID: 404440810342910098}
+  spawnForce: 5

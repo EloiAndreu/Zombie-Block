@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4fe813c5ba62f8b46858b0e43179bdde, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Boy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -86,6 +86,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fe813c5ba62f8b46858b0e43179bdde, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2970189989031470666}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fe813c5ba62f8b46858b0e43179bdde, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2561988660282756638}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fe813c5ba62f8b46858b0e43179bdde, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3085094181704942856}
@@ -951,6 +954,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2561988660282756638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137677304503349261}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.95, y: 4.9607716, z: 1.95}
+  m_Center: {x: -0.00000011920929, y: 2.4855866, z: 0.03031218}
 --- !u!114 &3085094181704942856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,15 +1023,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c484941a4d5d6bc4b817db7cbb20d9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 10
-  visionAngle: 90
-  targetLayers:
-    serializedVersion: 2
-    m_Bits: 0
+  visionRange: 30
+  visionAngle: 50
+  playerTag: Player
+  enemyTag: Enemy
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 257
   boyScreamPrefab: {fileID: 4116714394893189792, guid: 52df319d4861a07419159641fd9ee780, type: 3}
+  intervalTargets: 2
+  intervalRecollibles: 5
+  layerRecollible:
+    serializedVersion: 2
+    m_Bits: 32768
+  boyRobar: {fileID: 4137677304503349261, guid: ad3465fe145f79a41a6ab773b7b31cf3, type: 3}
 --- !u!1 &4961545967904332828 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8174140538269110592, guid: 4fe813c5ba62f8b46858b0e43179bdde, type: 3}

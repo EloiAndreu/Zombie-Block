@@ -4,117 +4,169 @@ using UnityEngine;
 
 public class GosMovement : MonoBehaviour
 {
-    float originalSpeed, originalAcceleration, originalAngularSpeed, originalStoppingDist;
     private UnityEngine.AI.NavMeshAgent agent;
-    private characterMoviment movement;
-    
+
+    private GameObject player;
+    private GameObject osActual;
+    //bool potSeguirJugador = true;
+    public GameObject gosNormal, gosAgressiu;
+
+    private enum Estat
+    {
+        SeguintPlayer,
+        AnantAOs
+    }
+
+    private Estat estatActual;
+
+    [SerializeField] float distanciaMinimaPlayer = 10f;
+
+    // Control de temps
+    float timer = 0f;
+    float interval = 3f;
+
+    // Resultat de l'últim càlcul
+    bool hiHaCami = true;
+
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        movement = GetComponent<characterMoviment>();
+        player = GameObject.FindGameObjectWithTag("Player");
 
-        originalSpeed = agent.speed;
-        originalAcceleration = agent.acceleration;
-        originalAngularSpeed = agent.angularSpeed;
-        originalStoppingDist = agent.stoppingDistance;
+        estatActual = Estat.SeguintPlayer;
     }
 
-
-    public void PlayerTeOs()
+    void Update()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null) return;
+        transform.LookAt(new Vector3(player.transform.position.x, 0f, player.transform.position.z));
+        timer += Time.deltaTime;
 
-        Vector3 playerPos = player.transform.position;
-        Vector3 gosPos = transform.position;
-
-        // Direcció del gos cap al player
-        Vector3 direccio = (playerPos - gosPos).normalized;
-
-        // Punt 10 unitats abans d'arribar al player
-        Vector3 target = playerPos - direccio * 10f;
-        movement.OverrideMoveTo(target);
-
-        agent.speed = 400f;
-        agent.acceleration = 100f;
-        agent.angularSpeed = 1200f;
-        agent.stoppingDistance = 0f; // IMPORTANT
-
-        StartCoroutine(WaitUntilArrives());
-    }
-
-    public void OsAlTerraLlencat()
-    {
-        GameObject osGos = GameObject.FindGameObjectWithTag("Os Gos");
-        if (osGos == null) return;
-
-        Vector3 target = osGos.transform.position;
-        movement.OverrideMoveTo(target);
-
-        agent.speed = 400f;
-        agent.acceleration = 1000f;
-        agent.angularSpeed = 1200f;
-        agent.stoppingDistance = 0f; 
-
-        StartCoroutine(WaitUntilArrives());
-    }
-
-    IEnumerator WaitUntilArrives()
-    {
-        while (agent.pathPending || agent.remainingDistance > agent.stoppingDistance)
+        // Només recalculam camí cada X segons
+        if (timer >= interval)
         {
-            yield return null;
+            timer = 0f;
+            //potSeguirJugador = true;
+            RecalcularCami();
         }
 
-        // Esperem a que realment s’aturi
-        while (agent.velocity.sqrMagnitude > 0.01f)
+        if (estatActual == Estat.SeguintPlayer)
         {
-            yield return null;
+            MouSeguintPlayer();
         }
-
-        agent.isStopped = true;
-    }
-
-    public void PlayerDeixaOs()
-    {
-        agent.speed = originalSpeed;
-        agent.acceleration = originalAcceleration;
-        agent.angularSpeed = originalAngularSpeed;
-        agent.stoppingDistance = originalStoppingDist;
-
-        agent.isStopped = false;
-
-        movement.StopOverride();
-    }
-
-    Vector3? GetRandomPointNearPlayer(float distance, int areaMask, int maxAttempts = 10)
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null) return null;
-
-        Vector3 origin = player.transform.position;
-
-        for (int i = 0; i < maxAttempts; i++)
+        else if (estatActual == Estat.AnantAOs)
         {
-            // Direcció aleatòria en pla (evitem Y)
-            Vector2 randomCircle = Random.insideUnitCircle.normalized * distance;
-            Vector3 randomPoint = origin + new Vector3(randomCircle.x, 0, randomCircle.y);
+            MouCapAOs();
+        }
+    }
 
-            Debug.DrawLine(origin, randomPoint, Color.red, 1f);
+    void RecalcularCami()
+    {
+        if (estatActual == Estat.SeguintPlayer && player != null)
+        {
+            hiHaCami = HiHaCami(player.transform.position);
+        }
+        else if (estatActual == Estat.AnantAOs && osActual != null)
+        {
+            hiHaCami = HiHaCami(osActual.transform.position);
 
-            UnityEngine.AI.NavMeshHit hit;
-            if (UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out hit, 5f, areaMask))
+            // Si no hi ha camí cap a l’os → destruir
+            if (!hiHaCami)
             {
-                UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath();
-
-                if (UnityEngine.AI.NavMesh.CalculatePath(transform.position, hit.position, areaMask, path) &&
-                    path.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
-                {
-                    return hit.position;
-                }
+                Instantiate(gosNormal, transform.position, transform.rotation);
+                Destroy(gameObject);
             }
         }
+    }
 
-        return null;
+    void MouSeguintPlayer()
+    {
+        if (player == null) return;
+
+        Vector3 dir = (transform.position - player.transform.position).normalized;
+        Vector3 target = player.transform.position + dir * distanciaMinimaPlayer;
+
+        // Sempre comprovem cap al mateix punt
+        //hiHaCami = HiHaCami(target);
+
+        if (hiHaCami)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(target);
+        }
+        else
+        {
+            agent.isStopped = true;
+        }
+    }
+
+    void MouCapAOs()
+    {
+        if (osActual == null) return;
+
+        if (!hiHaCami) return;
+
+        agent.isStopped = false;
+        //Debug.Log("Seguint Os");
+        agent.SetDestination(osActual.transform.position);
+
+        // Comprovació d'arribada
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (agent.velocity.sqrMagnitude < 0.01f)
+            {
+                Instantiate(gosAgressiu, transform.position, transform.rotation);
+                Destroy(osActual.gameObject);
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    bool HiHaCami(Vector3 desti)
+    {
+        UnityEngine.AI.NavMeshHit hit;
+
+        // Ajustem el destí al NavMesh
+        if (!UnityEngine.AI.NavMesh.SamplePosition(desti, out hit, 10f, UnityEngine.AI.NavMesh.AllAreas)){
+            //Debug.Log("Hi ha cami: false 1");
+            return false;
+        }
+
+        UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath();
+
+        if (agent.CalculatePath(hit.position, path))
+        {
+            //bool hiHaCami = (path.status == UnityEngine.AI.NavMeshPathStatus.PathComplete);
+            bool hiHaCami = 
+                path.status == UnityEngine.AI.NavMeshPathStatus.PathComplete ||
+                path.status == UnityEngine.AI.NavMeshPathStatus.PathPartial;
+            //Debug.Log("Hi ha cami: " + hiHaCami + " 2");
+            return path.status == UnityEngine.AI.NavMeshPathStatus.PathComplete;
+        }
+
+        //Debug.Log("Hi ha cami: false 3");
+        return false;
+    }
+
+    public void OsAlTerraLlencat(GameObject osGos)
+    {
+        if (osGos == null) return;
+
+        osActual = osGos;
+        estatActual = Estat.AnantAOs;
+
+        // Forcem càlcul immediat (no esperar 3s)
+        hiHaCami = HiHaCami(osActual.transform.position);
+
+        if (!hiHaCami)
+        {
+            Instantiate(gosNormal, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+    }
+
+    public void TornarAGosNormal()
+    {
+        Instantiate(gosNormal, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

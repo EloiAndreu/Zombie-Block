@@ -92,12 +92,35 @@ public class Health : MonoBehaviour
                 hitRb.AddForce(force, ForceMode.Impulse);
             }
 
+            if(this.gameObject.tag == "Boy")
+            {
+                GameObject.FindGameObjectWithTag("MainGame").GetComponent<MainGame>().PersonatgeMort(0);
+            }
+            else if (this.gameObject.tag == "Gos")
+            {
+                GameObject.FindGameObjectWithTag("MainGame").GetComponent<MainGame>().PersonatgeMort(1);
+            }
+            else if(this.gameObject.tag == "Mommy")
+            {
+                GameObject.FindGameObjectWithTag("MainGame").GetComponent<MainGame>().PersonatgeMort(2);
+            }
+            else if (this.gameObject.tag == "Granny")
+            {
+                GameObject.FindGameObjectWithTag("MainGame").GetComponent<MainGame>().PersonatgeMort(3);
+            }
+
             //Destroy(this.gameObject);
         }
         else if(this.gameObject.tag == "Player"){
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+
+        if(GetComponent<BoxCollider>() != null)
+        {
+            GetComponent<BoxCollider>().enabled = false;
+        }
+
     }
 
 

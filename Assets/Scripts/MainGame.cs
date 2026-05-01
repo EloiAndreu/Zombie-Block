@@ -39,8 +39,17 @@ public class MainGame : MonoBehaviour
 
     public UnityEvent començarRondaEvent, rondaComençadaEvent;
 
+    public int personatgesVius = 4;
+    public UnityEvent loseEvent, winEvent;
+    public List<GameObject> personatgesIMGVius, personatgesIMGMorts;
+    public Material skyboxDelJoc;
+
     void Start()
     {
+        //RenderSettings.skybox = elTeuSkybox;
+        //RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Skybox;
+        //DynamicGI.UpdateEnvironment();
+
         preparacioJugador = StartCoroutine(PreparacioJugador());
     }
 
@@ -48,6 +57,21 @@ public class MainGame : MonoBehaviour
     {
         yield return new WaitForSeconds(tempsPreparacio);
         IniciarRonda();
+    }
+
+    public void PersonatgeMort(int personatge_id)
+    {
+        personatgesVius--;
+        if(personatgesVius <= 0)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            loseEvent.Invoke();
+        }   
+
+        personatgesIMGVius[personatge_id].SetActive(false);
+        personatgesIMGMorts[personatge_id].SetActive(true);
     }
 
     public void IniciarRonda()
@@ -61,6 +85,13 @@ public class MainGame : MonoBehaviour
             ronda_text.text = "RONDA " + (rondaActual+1);
             ronda_text_2.text = "RONDA " + (rondaActual+1);
             StartCoroutine(GenerarEnemics(rondaActual));
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            winEvent.Invoke();
         }
     }
 

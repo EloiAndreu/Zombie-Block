@@ -16,10 +16,76 @@ public class BoyController : MonoBehaviour
     public GameObject boyScreamPrefab;
     bool hasSpawned = false;
 
+    public float intervalTargets = 2f;
+    public float intervalRecollibles = 5f;
+
+    private float timerTargets = 0f;
+    private float timerRecollibles = 0f;
+
+    public LayerMask layerRecollible;
+    public GameObject boyRobar;
+    GameObject newBoyRobar = null;
+
     void Update()
     {
-        DetectTargets();
+        timerTargets += Time.deltaTime;
+        timerRecollibles += Time.deltaTime;
+
+        if (timerTargets >= intervalTargets)
+        {
+            DetectTargets();
+            timerTargets = 0f;
+        }
+
+        if (timerRecollibles >= intervalRecollibles)
+        {
+            DetectarObjectesRecollibles();
+            timerRecollibles = 0f;
+        }
     }
+
+    void DetectarObjectesRecollibles()
+    {
+        //Debug.Log("Detectant objectes");
+        Collider[] colls = Physics.OverlapSphere(transform.position, 50f, layerRecollible);
+
+        List<GameObject> objectesValids = new List<GameObject>();
+
+        foreach (Collider col in colls)
+        {
+            GameObject obj = col.gameObject;
+            float y = obj.transform.position.y;
+
+            if (y < 5f && y >= -0.5f)
+            {
+                objectesValids.Add(obj);
+            }
+        }
+
+        if (objectesValids.Count > 0)
+        {
+            GameObject seleccionat = objectesValids[Random.Range(0, objectesValids.Count)];
+            Debug.Log("Seleccionat: " + seleccionat.name);
+
+            if(boyRobar != null && newBoyRobar == null)
+            {
+                newBoyRobar = Instantiate(boyRobar, transform.position, transform.rotation);
+
+                //var script = newBoyRobar.GetComponent<CharacterRobarObj>();
+                //script.Init(seleccionat, this.gameObject);
+
+                newBoyRobar.GetComponent<CharacterRobarObj>().objecteInicial = seleccionat;
+                newBoyRobar.GetComponent<CharacterRobarObj>().boyCompu = this.gameObject;
+                
+            }
+        }
+    }
+
+    void OnEnabled()
+    {
+        newBoyRobar = null;
+    }
+    
 
     void DetectTargets()
     {
@@ -46,7 +112,7 @@ public class BoyController : MonoBehaviour
                     if (!hasSpawned)
                     {
                         hasSpawned = true;
-                        Instantiate(boyScreamPrefab, transform.position, transform.rotation);
+                        //Instantiate(boyScreamPrefab, transform.position, transform.rotation);
                         gameObject.SetActive(false);
                     }
                 }
